@@ -42,7 +42,7 @@ static void _leds_turn_big_led_component(uint8_t pin, bool level)
 static const uint8_t big_leds[2][3] = {{PIN_BLED0_R, PIN_BLED0_G, PIN_BLED0_B},
                                        {PIN_BLED1_R, PIN_BLED1_G, PIN_BLED1_B}};
 
-void leds_turn_big_led(int led, led_color_t color)
+void leds_turn_big_led(led_big_t led, led_color_t color)
 {
     switch (color) {
     case LED_COLOR_WHITE:

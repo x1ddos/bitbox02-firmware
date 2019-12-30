@@ -27,8 +27,8 @@ fn confirm_pairing(
     let bytes = &request.msg[..];
     bitbox02::leds_turn_small_led(0, true);
     bitbox02::leds_turn_small_led(4, true);
-    bitbox02::leds_turn_big_led(0, None);
-    bitbox02::leds_turn_big_led(1, None);
+    bitbox02::leds_turn_big_led(bitbox02::BigLed::Left, None);
+    bitbox02::leds_turn_big_led(bitbox02::BigLed::Right, None);
 
     bitbox02::bitboxbase_screensaver_reset();
     let res = pairing::extra_hash_create(bytes);

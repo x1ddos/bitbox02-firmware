@@ -155,10 +155,12 @@ pub enum Color {
     Cyan,
 }
 
-pub fn leds_turn_big_led(led: i32, color: Option<Color>) {
-    if led < 0 || led > 2 {
-        panic!("Invalid led");
-    }
+pub enum BigLed {
+    Left,
+    Right,
+}
+
+pub fn leds_turn_big_led(led: BigLed, color: Option<Color>) {
     let c = match color {
         None => bitbox02_sys::led_color_t_LED_COLOR_NONE,
         Some(c) => match c {
@@ -171,7 +173,11 @@ pub fn leds_turn_big_led(led: i32, color: Option<Color>) {
             Color::Cyan => bitbox02_sys::led_color_t_LED_COLOR_CYAN,
         },
     };
-    unsafe { bitbox02_sys::leds_turn_big_led(led, c) }
+    let l = match led {
+        BigLed::Left => bitbox02_sys::led_big_t_LED_BIG_LEFT,
+        BigLed::Right => bitbox02_sys::led_big_t_LED_BIG_RIGHT,
+    };
+    unsafe { bitbox02_sys::leds_turn_big_led(l, c) }
 }
 
 pub fn sha256(input: &[u8], output: &mut [u8]) -> Result<(), ()> {

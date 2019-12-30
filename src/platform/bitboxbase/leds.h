@@ -29,6 +29,11 @@ typedef enum {
     LED_COLOR_NONE
 } led_color_t;
 
+typedef enum {
+    LED_BIG_LEFT = 0,
+    LED_BIG_RIGHT = 1,
+} led_big_t;
+
 /**
  * Initializes the LED array.
  * Turns every pin to output, turns off every LED.
@@ -47,10 +52,9 @@ void leds_turn_small_led(int led, bool enabled);
 /**
  * Turn on/off the given RGB LED.
  *
- * @param[in] led Index of the LED to turn on/off (0 < led < 2).
- *                 0 is the left LED, 1 is the right one.
+ * @param[in] led The LED to turn on/off, the one on the left or the right side.
  * @param[in] color Which color to turn the LED (White, red, green, blue, or off).
  */
-void leds_turn_big_led(int led, led_color_t color);
+void leds_turn_big_led(led_big_t led, led_color_t color);
 
 #endif // __BITBOXBASE_LEDS_H

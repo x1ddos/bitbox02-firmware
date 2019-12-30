@@ -45,35 +45,35 @@ void _render(component_t* component)
     bitboxbase_state_get_description(buf, sizeof(buf));
     switch (bitboxbase_state_get()) {
     case BBBNotAlive:
-        leds_turn_big_led(0, LED_COLOR_RED);
+        leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_RED);
         label_update(label, "Error, please restart");
         break;
     case BBBWaiting:
-        leds_turn_big_led(0, LED_COLOR_GREEN);
+        leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_GREEN);
         label_update(label, "System starting...");
         break;
     case BBBIdle:
         if (bitboxbase_config_led_mode_get() < OnWarning) {
-            leds_turn_big_led(0, LED_COLOR_GREEN);
+            leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_GREEN);
         } else {
-            leds_turn_big_led(0, LED_COLOR_NONE);
+            leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_NONE);
         }
         label_update(label, buf);
         break;
     case BBBWorking:
-        leds_turn_big_led(0, LED_COLOR_BLUE);
+        leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_BLUE);
         label_update(label, buf);
         break;
     case BBBWarning:
         if (bitboxbase_config_led_mode_get() < OnError) {
-            leds_turn_big_led(0, LED_COLOR_YELLOW);
+            leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_YELLOW);
         } else {
-            leds_turn_big_led(0, LED_COLOR_NONE);
+            leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_NONE);
         }
         label_update(label, buf);
         break;
     case BBBError:
-        leds_turn_big_led(0, LED_COLOR_RED);
+        leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_RED);
         label_update(label, buf);
         break;
     default:
@@ -118,8 +118,8 @@ static component_t* _create(void)
 
 void bitboxbase_background(void)
 {
-    leds_turn_big_led(0, LED_COLOR_NONE);
-    leds_turn_big_led(1, LED_COLOR_NONE);
+    leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_NONE);
+    leds_turn_big_led(LED_BIG_RIGHT, LED_COLOR_NONE);
     component_t* b = _create();
     ui_screen_stack_push(b);
 }

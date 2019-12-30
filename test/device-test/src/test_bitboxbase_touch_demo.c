@@ -65,7 +65,7 @@ void _on_event(const event_t* event, component_t* component)
             led_color = &data->color_left;
             label = component->sub_components.sub_components[0];
             if (event->id == EVENT_BUTTON_SHORT_TAP) {
-                leds_turn_big_led(0, *led_color + 2);
+                leds_turn_big_led(LED_BIG_LEFT, *led_color + 2);
             }
             break;
         case BITBOXBASE_BUTTON_RIGHT:
@@ -73,7 +73,7 @@ void _on_event(const event_t* event, component_t* component)
             led_color = &data->color_right;
             label = component->sub_components.sub_components[1];
             if (event->id == EVENT_BUTTON_SHORT_TAP) {
-                leds_turn_big_led(1, *led_color + 2);
+                leds_turn_big_led(LED_BIG_RIGHT, *led_color + 2);
             }
             break;
         default:; // nothing
@@ -109,8 +109,8 @@ void _render(component_t* component)
     if (data->timeout > 100) {
         label_update(component->sub_components.sub_components[0], "");
         label_update(component->sub_components.sub_components[1], "");
-        leds_turn_big_led(0, LED_COLOR_RED);
-        leds_turn_big_led(1, LED_COLOR_RED);
+        leds_turn_big_led(LED_BIG_LEFT, LED_COLOR_RED);
+        leds_turn_big_led(LED_BIG_RIGHT, LED_COLOR_RED);
     }
     data->timeout++;
 }
